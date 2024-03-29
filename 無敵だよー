@@ -1,0 +1,18 @@
+local gui = Instance.new("ScreenGui")
+gui.Parent = game.Players.LocalPlayer.PlayerGui
+
+local button = Instance.new("TextButton", gui)
+button.Size, button.Position, button.Text = UDim2.new(0, 150, 0, 50), UDim2.new(0.5, -75, 0.5, -25), "Freeze Players"
+
+button.MouseButton1Click:Connect(function()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        local character = player.Character
+        if character then
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.Anchored = true
+                end
+            end
+        end
+    end
+end)
